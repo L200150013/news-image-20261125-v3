@@ -399,23 +399,23 @@ MAP_GRID = [
     "            #####       #####           #######               ",
     "            #####       ####             ######               ",
     "             ####       ####              #####               ",
-    "             ####       ####             ######               ",
-    "             ###        ###            #######                ",
-    "             ###        ###            #######                ",
-    "             ###        ###             #####                 ",
-    "             ##         ##              ####                  ",
-    "             ##                                  ##          ",
-    "             #                                   #           ",
+    "             ####       ####             ############          ",
+    "             ###        ###            #################       ",
+    "             ###        ###            ###################     ",
+    "             ###        ###             ###################    ",
+    "             ##         ##              ###################    ",
+    "             ##                          ##############        ",
+    "             #                                  ####           ",
     "             #                                               ",
 ]
 
 PINS = [
     (1, 100.3, 41.0, None), (2, -93.5, 42.0, None),
-    (3, -77.0, 38.9, None), (4, -63.0, 30.0, (298, 643)),
+    (3, -77.0, 38.9, None), (4, -63.0, 30.0, (287, 643)),
     (5, 151.2, -33.9, None), (6, 37.6, 55.8, None),
-    (7, -118.2, 34.1, None), (8, 158.0, -28.0, (932, 723)),
+    (7, -118.2, 34.1, None), (8, 158.0, -28.0, (895, 723)),
     (9, 13.4, 52.5, None), (10, -0.1, 51.5, None),
-    (11, -78.5, -0.2, None), (12, -66.0, 45.0, (306, 641)),
+    (11, -78.5, -0.2, None), (12, -66.0, 45.0, (294, 641)),
     (13, 46.7, 24.7, None),
 ]
 
@@ -427,8 +427,8 @@ def draw_map(d, y0, h):
            fill=GREY)
     gy, gh = y0 + 24, h - 24
     d.rectangle([12, gy, W - 12, gy + gh], fill=SEA)
-    rows, cols = len(MAP_GRID), 60
-    cw, chh = 1000.0 / cols, gh / rows
+    rows, cols = len(MAP_GRID), 63
+    cw, chh = 960.0 / cols, gh / rows
     for r, row in enumerate(MAP_GRID):
         for cix, cell in enumerate(row.ljust(cols)):
             if cell == "#":
@@ -442,13 +442,13 @@ def draw_map(d, y0, h):
                           fill=(96, 82, 52))
     for num, lon, lat, leader_from in PINS:
         if leader_from:
-            px = 12 + (lon + 180.0) / 360.0 * 1000.0
+            px = 12 + (lon + 180.0) / 360.0 * 960.0
             py = gy + (78.0 - lat) / 131.0 * gh
             d.line([leader_from, (px, py)], fill=RED, width=1)
             d.ellipse([leader_from[0] - 2, leader_from[1] - 2,
                        leader_from[0] + 2, leader_from[1] + 2], fill=RED)
     for num, lon, lat, leader_from in PINS:
-        px = 12 + (lon + 180.0) / 360.0 * 1000.0
+        px = 12 + (lon + 180.0) / 360.0 * 960.0
         py = gy + (78.0 - lat) / 131.0 * gh
         d.ellipse([px - 9, py - 9, px + 9, py + 9], fill=RED,
                   outline=WHITE, width=1)
